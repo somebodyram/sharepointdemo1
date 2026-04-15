@@ -4,7 +4,7 @@ sap.ui.define([
   "sap/ui/model/json/JSONModel"
 ], function (Controller, MessageBox, JSONModel) {
   "use strict";
-
+// Initial git commit setup
   return Controller.extend(
     "sharepointdemo1.custompageapp.ext.view.Main",
     {
