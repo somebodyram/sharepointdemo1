@@ -1,0 +1,72 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:u="sap.ui.unified"
+  controllerName="sharepointdemo1.custompageapp.ext.view.Main">
+
+  <VBox
+    id="mainVBox"
+    class="sapUiSmallMargin"
+    width="100%">
+
+    <!-- Excel upload -->
+    <u:FileUploader
+      id="excelUploader"
+      fileType="xlsx,xls"
+      placeholder="Choose Excel file"
+      width="50%" />
+
+    <Button
+      id="readExcelButton"
+      text="Read Excel"
+      press="onReadExcelPress"
+      class="sapUiSmallMarginTop" />
+
+    <!-- Results Table -->
+    <Table
+      id="resultTable"
+      class="sapUiSmallMarginTop"
+      items="{excelModel>/}"
+      width="100%">
+
+      <columns>
+        <Column id="colEmpId">
+          <Text id="txtColEmpId" text="Employee ID"/>
+        </Column>
+
+        <Column id="colEmpName">
+          <Text id="txtColEmpName" text="Employee Name"/>
+        </Column>
+
+        <Column id="colDept">
+          <Text id="txtColDept" text="Department"/>
+        </Column>
+
+        <Column id="colStatus">
+          <Text id="txtColStatus" text="Status"/>
+        </Column>
+      </columns>
+
+      <items>
+        <ColumnListItem id="rowItem">
+          <cells>
+            <Text id="cellEmpId" text="{excelModel>empId}"/>
+            <Text id="cellEmpName" text="{excelModel>empName}"/>
+            <Text id="cellDept" text="{excelModel>department}"/>
+
+            <ObjectStatus
+              id="cellStatus"
+              text="{excelModel>status}"
+              state="{
+                = ${excelModel>status} === 'VALID'
+                  ? 'Success'
+                  : 'Error'
+              }"/>
+          </cells>
+        </ColumnListItem>
+      </items>
+
+    </Table>
+
+  </VBox>
+</mvc:View>
