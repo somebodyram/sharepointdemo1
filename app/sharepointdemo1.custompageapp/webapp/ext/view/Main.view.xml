@@ -16,11 +16,11 @@
       placeholder="Choose Excel file"
       width="50%" />
 
-    <Button
-      id="readExcelButton"
-      text="Read Excel"
-      press="onReadExcelPress"
-      class="sapUiSmallMarginTop" />
+    <HBox id="buttonBox" class="sapUiSmallMargin">
+      <Button id="btnRead" text="Read Excel" press="onReadExcel"/>
+      <Button id="btnProcess" text="Process Excel" press="onProcessExcel"/>
+      <Button id="btnDownload" text="Download Excel" press="onDownloadExcel"/>
+    </HBox>
 
     <!-- Results Table -->
     <Table
@@ -45,6 +45,19 @@
         <Column id="colStatus">
           <Text id="txtColStatus" text="Status"/>
         </Column>
+
+        <Column id="colRating">
+          <Text id="txtRating" text="Rating"/>
+        </Column>
+
+        <Column id="colExperience">
+          <Text id="txtExperience" text="Experience"/>
+        </Column>
+
+        <Column id="colCountry">
+          <Text id="txtCountry" text="Country"/>
+        </Column>
+
       </columns>
 
       <items>
@@ -52,16 +65,16 @@
           <cells>
             <Text id="cellEmpId" text="{excelModel>empId}"/>
             <Text id="cellEmpName" text="{excelModel>empName}"/>
-            <Text id="cellDept" text="{excelModel>department}"/>
-
-            <ObjectStatus
-              id="cellStatus"
-              text="{excelModel>status}"
+            <Text id="cellDepartment" text="{excelModel>department}"/>  
+            <ObjectStatus id="cellStatus" text="{excelModel>status}"
               state="{
                 = ${excelModel>status} === 'VALID'
                   ? 'Success'
                   : 'Error'
               }"/>
+            <Text id="cellRating" text="{excelModel>rating}"/>
+            <Text id="cellExperience" text="{excelModel>experience}"/>
+            <Text id="cellCountry" text="{excelModel>country}"/>
           </cells>
         </ColumnListItem>
       </items>
